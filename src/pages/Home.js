@@ -26,13 +26,13 @@ const Home = () => {
     (state) => state.games
   );
   return (
-    <GameList variants={fadeIn} initial="hidden" animate="show">
-      <AnimateSharedLayout type="crossfade">
+    <GameList variants={fadeIn} initial='hidden' animate='show'>
+      <AnimateSharedLayout type='crossfade'>
         <AnimatePresence>
           {pathId && <GameDetail pathId={pathId} />}
         </AnimatePresence>
         {searched.length ? (
-          <div className="searched">
+          <div className='searched'>
             <h2>Searched Games</h2>
             <Games>
               {searched.map((game) => (
@@ -100,7 +100,10 @@ const GameList = styled(motion.div)`
 const Games = styled(motion.div)`
   min-height: 80vh;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: ${({ size }) =>
+    size === "large"
+      ? "repeat(auto-fit, minmax(500px, 1fr))"
+      : "repeat(auto-fit, minmax(250px, 1fr))"};
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
 `;
